@@ -78,8 +78,13 @@ int LRU(int argc, char** argv) {
 	//1. Input
 	std::ifstream file;
 	if (argc == 1) {
+
+		std::cout << "Input cash size:" << std::endl;
 		std::cin >> cash_len;
+
+		std::cout << "Input number of request" << std::endl;
 		std::cin >> req_len;
+
 		FILE_MODE = OFF;
 
 	}
@@ -93,10 +98,11 @@ int LRU(int argc, char** argv) {
 		file >> answer;
 		std::cout << answer << std::endl;
 		file.seekg(0, std::ios::beg);
-
 		//input data
+
 		file >> cash_len;
 		file >> req_len;
+
 		FILE_MODE = ON;
 
 		
@@ -112,8 +118,10 @@ int LRU(int argc, char** argv) {
 
 		if (FILE_MODE == ON)
 			file >> value;
-		else
+		else {
+			std::cout << "Input " << i << " page" << std::endl;
 			std::cin >> value;
+		}
 
 		if (find_hash(value, hash_t, cash_len) == -1)
 			cash_miss++;

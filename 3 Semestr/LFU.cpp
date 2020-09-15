@@ -71,8 +71,12 @@ void LFU(int argc, char** argv) {
 	//input values
 	std::ifstream file;
 	if (argc == 1) {
+		std::cout << "Input cash size:" << std::endl;
 		std::cin >> cash_size;
+
+		std::cout << "Input number of request" << std::endl;
 		std::cin >> num;
+
 		FILE_MODE = OFF;
 
 	}
@@ -92,8 +96,10 @@ void LFU(int argc, char** argv) {
 		// Create a request
 		if (FILE_MODE == ON)
 			file >> node.data;
-		else
+		else {
+			std::cout << "Input " << i << " page" << std::endl;
 			std::cin >> node.data;
+		}
 		node.freq = 1;
 
 		//Find in hash a request

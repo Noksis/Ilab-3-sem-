@@ -7,6 +7,7 @@
 #define ON 1
 #define OFF 0
 
+const int MAX_LEN = 100;
 int NO_FIND = -1;
 
 // Задаем размер кэша и кол-во запросов
@@ -66,10 +67,13 @@ int LRU(int argc, char** argv) {
 	int cash_len = 0;
 	int req_len = 0;
 	int value = 0;
+
 	int cash_miss = 0;
 	int cash_catch = 0;
+
 	int* hash_t = NULL;
 	bool FILE_MODE = OFF;
+	char answer[MAX_LEN] = { 0 };
 
 	//1. Input
 	std::ifstream file;
@@ -81,12 +85,21 @@ int LRU(int argc, char** argv) {
 	}
 	else {
 
-		//		std::cout << argv[1];
 		file.open(argv[1]);
 		assert(file);
+
+		//answer LRU
+		file.seekg(-15, std::ios::end);
+		file >> answer;
+		std::cout << answer << std::endl;
+		file.seekg(0, std::ios::beg);
+
+		//input data
 		file >> cash_len;
 		file >> req_len;
 		FILE_MODE = ON;
+
+		
 	}
 
 	//2. Create Hash table
@@ -107,9 +120,12 @@ int LRU(int argc, char** argv) {
 		else
 			cash_catch++;
 	}
-
+	
+	file.close();
 	//4. Answer
-	printf("LRU hits is = [%d]", cash_catch);
+	printf("\nMy alg LRU answer is = [%d]", cash_catch);
+
+
 
 	return 0;
 }

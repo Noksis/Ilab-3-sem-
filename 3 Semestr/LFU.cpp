@@ -125,6 +125,6 @@ void LFU(int argc, char** argv) {
 
 	}
 
-	printf("LFU hits is = [%d] \n", hit);
+	printf("My alg LRU answer is = [%d] \n \n", hit);
 
 }
